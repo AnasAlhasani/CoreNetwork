@@ -40,7 +40,7 @@ public extension APIRequest {
    
    func urlRequest(in apiClient: APIClient) -> URLRequest {
       
-      let requestURL = apiClient.configuration.url.appendingPathComponent(path)
+      let requestURL = url(in: apiClient)
       let cachePolicy = apiClient.configuration.cachePolicy
       let timeout = apiClient.configuration.timeout
       
