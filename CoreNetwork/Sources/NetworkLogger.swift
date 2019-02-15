@@ -37,8 +37,8 @@ enum NetworkLogger {
       
       if let json = httpBody.jsonDictionary?.jsonString {
          logOutput += "\n\nBody: \(json)"
-      } else if let parameters: [String: HTTPParameter] = try? httpBody.decode() {
-         logOutput += "\nBody: \n\(parameters.mapValues { $0.description })"
+      } else if let parameters = String(bytes: httpBody, encoding: .utf8) {
+         logOutput += "\nBody: \n\(parameters)"
       }
       
       print(logOutput)
