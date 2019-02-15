@@ -38,7 +38,11 @@ public struct DefaultRequest<ResponseType: Decodable>: APIRequest {
 
 public class RequestBuilder<Response: Decodable> {
    
-   private var defaultRequest = DefaultRequest<Response>()
+   private var defaultRequest: DefaultRequest<Response>
+   
+   public init() {
+      self.defaultRequest = DefaultRequest<Response>()
+   }
    
    @discardableResult
    public func path(_ path: String) -> RequestBuilder {
