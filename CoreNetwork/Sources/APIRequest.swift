@@ -8,21 +8,20 @@
 
 import Foundation
 
-public protocol APIRequest: Encodable {
+public protocol APIRequest {
    
    associatedtype Response: Decodable
    
-   var method: RequestMethod { get }
    var path: String { get }
+   var method: HTTPMethod { get }
    var headers: HeadersDictionary { get }
    var urlParameters: JSONDictionary { get }
-   func headers(in apiClient: APIClient) -> HeadersDictionary
-   func url(in apiClient: APIClient) -> URL
+   var httpBody: Data? { get }
+   var bodyEncoding: HTTPBodyEncoder { get }
    func urlRequest(in apiClient: APIClient) -> URLRequest
 }
 
 public extension APIRequest {
-   
    var headers: HeadersDictionary {
       return [:]
    }
@@ -31,21 +30,17 @@ public extension APIRequest {
       return [:]
    }
    
-   func headers(in apiClient: APIClient) -> HeadersDictionary {
-      var headers = apiClient.configuration.headers
-      self.headers.forEach { headers[$0.key] = $0.value }
-      return headers
+   var httpBody: Data? {
+      return nil
    }
    
-   func url(in apiClient: APIClient) -> URL {
-      let parameters = URLQueryEncoder.encode(urlParameters)
-      let url = apiClient.configuration.url.appendingPathComponent(path)
-      return URL(string: "\(url.absoluteString)?\(parameters)") ?? url
+   var bodyEncoding: HTTPBodyEncoder {
+      return .jsonEncoding
    }
    
    func urlRequest(in apiClient: APIClient) -> URLRequest {
       
-      let requestURL = url(in: apiClient)
+      let requestURL = apiClient.configuration.url.appendingPathComponent(path)
       let cachePolicy = apiClient.configuration.cachePolicy
       let timeout = apiClient.configuration.timeout
       
@@ -57,8 +52,25 @@ public extension APIRequest {
       
       urlRequest.httpMethod = method.rawValue
       urlRequest.allHTTPHeaderFields = headers(in: apiClient)
-      urlRequest.httpBody = try? JSONEncoder().encode(self)
+      urlRequest.httpBody = httpBody
       return urlRequest
    }
+}
+
+internal extension APIRequest {
+   func url(in apiClient: APIClient) -> URL {
+      let url = apiClient.configuration.url.appendingPathComponent(path)
+      var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+      let parameters = urlParameters.mapValues { try? HTTPParameter(value: $0) }
+      urlComponents?.queryItems = try? URLQueryEncoder.encode(parameters)
+      return urlComponents?.url ?? url
+   }
    
+   func headers(in apiClient: APIClient) -> HeadersDictionary {
+      var headers = apiClient.configuration.headers
+      self.headers.forEach { headers[$0.key] = $0.value }
+      guard headers[HTTPHeaders.contentType.rawValue] == nil else { return headers }
+      headers[HTTPHeaders.contentType.rawValue] = HTTPHeaders.contentType.value(bodyEncoding)
+      return headers
+   }
 }

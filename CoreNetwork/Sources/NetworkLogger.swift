@@ -11,33 +11,35 @@ import Foundation
 enum NetworkLogger {
    
    static func log(request: URLRequest) {
-      
       print("\n - - - - - - - - - - OUTGOING - - - - - - - - - - \n")
       defer { print("\n - - - - - - - - - -  END - - - - - - - - - - \n") }
       
       let urlString = request.url?.absoluteString ?? ""
       let urlComponents = URLComponents(string: urlString)
       
-      let scheme = urlComponents?.scheme ?? "N/A"
-      let host = urlComponents?.host ?? "N/A"
-      let method = request.httpMethod ?? "N/A"
-      let path = urlComponents?.path ?? "N/A"
-      let query = urlComponents?.query ?? "N/A"
-      let headers = request.allHTTPHeaderFields?.jsonString ?? "N/A"
-      let body = request.httpBody?.jsonDictionary.jsonString ?? "N/A"
+      let scheme = urlComponents?.scheme ?? ""
+      let host = urlComponents?.host ?? ""
+      let method = request.httpMethod ?? ""
+      let path = urlComponents?.path ?? ""
+      let query = urlComponents?.query ?? ""
       
-      let logOutput = """
-      Scheme: \(scheme) \n
-      Host: \(host) \n
-      Method: \(method) \n
-      Path: \(path) \n
-      Query: \(query) \n
-      Headers: \(headers) \n
-      Body: \n\(body)
+      var logOutput = """
+      \(scheme)://\(host) \n
+      \(method) \(path)\(query.isEmpty ? "" : "?")\(query) \n
       """
       
-      print(logOutput)
+      guard let httpBody = request.httpBody else {
+         print(logOutput)
+         return
+      }
       
+      if let json = httpBody.jsonDictionary?.jsonString {
+         logOutput += "\nBody: \n\(json)"
+      } else if let parameters: [String: HTTPParameter] = try? httpBody.decode() {
+         logOutput += "\nBody: \n\(parameters.mapValues { $0.description })"
+      }
+      
+      print(logOutput)
    }
    
    static func log(data: Data?, response: HTTPURLResponse?) {
@@ -49,7 +51,7 @@ enum NetworkLogger {
       let urlComponents = URLComponents(string: urlString)
       
       let path = urlComponents?.path ?? "N/A"
-      let body = data?.jsonDictionary.jsonString ?? "N/A"
+      let body = data?.jsonDictionary?.jsonString ?? "N/A"
       
       let logOutput = """
       Path: \(path) \n

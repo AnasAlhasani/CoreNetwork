@@ -8,9 +8,7 @@
 
 import Foundation
 
-public typealias ResultCompletion<T> = (Result<T>) -> Void
-
 public enum Result<Value> {
    case success(Value)
-   case failure(String)
+   case failure(Error)
 }
