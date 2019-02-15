@@ -11,8 +11,8 @@ import Foundation
 enum NetworkLogger {
    
    static func log(request: URLRequest) {
-      print("\n - - - - - - - - - - OUTGOING - - - - - - - - - - \n")
-      defer { print("\n - - - - - - - - - -  END - - - - - - - - - - \n") }
+      print("\n- - - - - - - - - - OUTGOING - - - - - - - - - -\n")
+      defer { print("\n- - - - - - - - - - END - - - - - - - - - -\n") }
       
       let urlString = request.url?.absoluteString ?? ""
       let urlComponents = URLComponents(string: urlString)
@@ -20,12 +20,14 @@ enum NetworkLogger {
       let scheme = urlComponents?.scheme ?? ""
       let host = urlComponents?.host ?? ""
       let method = request.httpMethod ?? ""
+      let headers = request.allHTTPHeaderFields?.jsonString ?? "N/A"
       let path = urlComponents?.path ?? ""
       let query = urlComponents?.query ?? ""
       
       var logOutput = """
       \(scheme)://\(host) \n
-      \(method) \(path)\(query.isEmpty ? "" : "?")\(query) \n
+      \(method) \(path)\(query.isEmpty ? "" : "?")\(query)\n
+      Headers: \(headers)
       """
       
       guard let httpBody = request.httpBody else {
@@ -34,7 +36,7 @@ enum NetworkLogger {
       }
       
       if let json = httpBody.jsonDictionary?.jsonString {
-         logOutput += "\nBody: \n\(json)"
+         logOutput += "\n\nBody: \(json)"
       } else if let parameters: [String: HTTPParameter] = try? httpBody.decode() {
          logOutput += "\nBody: \n\(parameters.mapValues { $0.description })"
       }
@@ -43,9 +45,8 @@ enum NetworkLogger {
    }
    
    static func log(data: Data?, response: HTTPURLResponse?) {
-      
-      print("\n - - - - - - - - - - INGOING - - - - - - - - - - \n")
-      defer { print("\n - - - - - - - - - -  END - - - - - - - - - - \n") }
+      print("\n- - - - - - - - - - INGOING - - - - - - - - - -\n")
+      defer { print("\n- - - - - - - - - - END - - - - - - - - - -\n") }
       
       let urlString = response?.url?.absoluteString ?? ""
       let urlComponents = URLComponents(string: urlString)
@@ -54,10 +55,9 @@ enum NetworkLogger {
       let body = data?.jsonDictionary?.jsonString ?? "N/A"
       
       let logOutput = """
-      Path: \(path) \n
-      Body: \n\(body)
+      Path: \(path)\n
+      Body: \(body)
       """
-      
       print(logOutput)
    }
 }
