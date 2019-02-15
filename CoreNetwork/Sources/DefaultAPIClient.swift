@@ -20,7 +20,7 @@ public final class DefaultAPIClient: APIClient {
       
       let urlRequest = request.urlRequest(in: self)
       
-      let dataRequest = AlamofireManager.manager.request(urlRequest)
+      let dataRequest = AlamofireManager.default.request(urlRequest)
       
       AlamofireManager.handleAuthChallenge()
       
