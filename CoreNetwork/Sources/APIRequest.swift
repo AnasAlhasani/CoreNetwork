@@ -69,7 +69,7 @@ internal extension APIRequest {
    func headers(in apiClient: APIClient) -> HeadersDictionary {
       var headers = apiClient.configuration.headers
       self.headers.forEach { headers[$0.key] = $0.value }
-      guard headers[HTTPHeaders.contentType.rawValue] == nil else { return headers }
+      guard headers[HTTPHeaders.contentType.rawValue] == nil, httpBody != nil else { return headers }
       headers[HTTPHeaders.contentType.rawValue] = HTTPHeaders.contentType.value(bodyEncoding)
       return headers
    }
