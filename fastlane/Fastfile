@@ -19,16 +19,20 @@ platform :ios do
   end
 
   def release(type)
+    ensure_git_status_clean
+    ensure_git_branch(branch: "develop")
+    git_pull
+
     pod_lib_lint
     
     version = version_bump_podspec(
-      path: podspec_name,
+      path: @podspec_name,
       bump_type: type
     )
-
-    git_add(path: podspec_name)
+    
+    git_add(path: @podspec_name)
     git_commit(
-      path: [podspec_name],
+      path: '.',
       message: "#{version} release 🚀"
     )
     add_git_tag(tag: "#{version}")
