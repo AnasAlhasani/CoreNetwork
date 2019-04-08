@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary      = 'Protocol oriented networking layer on top of Alamofire'
   
   s.homepage     = 'https://github.com/AnasAlhasani/CoreNetwork'
-  s.author       = { 'Anas Alhasani' }
+  s.author       = 'Anas Alhasani'
   s.social_media_url = 'https://twitter.com/AlhasaniAnas'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   
