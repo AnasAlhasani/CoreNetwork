@@ -1,6 +1,14 @@
 # CoreNetwork
+
+[![codebeat badge](https://codebeat.co/badges/e7169d1a-505e-49b8-ba1c-d140042e27d3)](https://codebeat.co/projects/github-com-anasalhasani-corenetwork-master)
+
 Protocol oriented networking layer on top of Alamofire
-* `Entities`
+
+## Examples
+
+**1. Entities:**
+
+* `Responses`
 
 ```swift
 struct Book: Decodable {
@@ -27,8 +35,7 @@ struct AddBookParameters: Encodable {
 }
 ```
 
-
-* `Controller`
+**2. Controller:**
 
 ```swift
 class BooksViewController: UIViewController {
