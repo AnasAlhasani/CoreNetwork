@@ -20,7 +20,7 @@ platform :ios do
 
   def release(type)
     ensure_git_status_clean
-    ensure_git_branch(branch: "develop")
+    ensure_git_branch(branch: "master")
     git_pull
 
     pod_lib_lint
