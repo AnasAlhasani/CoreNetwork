@@ -14,5 +14,5 @@ public protocol APIClient {
    
    init(_ configuration: ServiceConfigurator)
    
-   func execute<T: APIRequest>(_ request: T, completion: @escaping ResultCompletion<T.Response>)
+   func execute<T: APIRequest>(_ request: T, completion: @escaping Handler<T.Response>)
 }

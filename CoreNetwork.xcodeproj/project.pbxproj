@@ -8,26 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		5D2CDA72219CE33E009BCA40 /* CoreNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D2CDA70219CE33E009BCA40 /* CoreNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D2CDA7B219CE3C0009BCA40 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2CDA7A219CE3C0009BCA40 /* APIClient.swift */; };
-		5D2CDA7D219CE3D7009BCA40 /* AlamofireAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2CDA7C219CE3D7009BCA40 /* AlamofireAPIClient.swift */; };
-		5D2CDA7F219CE3F6009BCA40 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2CDA7E219CE3F6009BCA40 /* APIRequest.swift */; };
-		5D2CDA81219CE413009BCA40 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2CDA80219CE413009BCA40 /* NetworkLogger.swift */; };
-		5D2CDA83219CE433009BCA40 /* ServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2CDA82219CE433009BCA40 /* ServiceConfigurator.swift */; };
-		5D2CDA85219CE468009BCA40 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2CDA84219CE468009BCA40 /* Result.swift */; };
-		5D2CDA87219CE479009BCA40 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2CDA86219CE479009BCA40 /* Common.swift */; };
+		5D675AED225CBC520063A987 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE0225CBC510063A987 /* Commons.swift */; };
+		5D675AEE225CBC520063A987 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE1225CBC510063A987 /* HTTPMethod.swift */; };
+		5D675AEF225CBC520063A987 /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE2225CBC510063A987 /* DefaultAPIClient.swift */; };
+		5D675AF0225CBC520063A987 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE3225CBC510063A987 /* ParameterEncoding.swift */; };
+		5D675AF1225CBC520063A987 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE4225CBC510063A987 /* NetworkError.swift */; };
+		5D675AF2225CBC520063A987 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE5225CBC510063A987 /* APIClient.swift */; };
+		5D675AF3225CBC520063A987 /* ServiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE6225CBC510063A987 /* ServiceConfigurator.swift */; };
+		5D675AF4225CBC520063A987 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE7225CBC510063A987 /* AlamofireManager.swift */; };
+		5D675AF5225CBC520063A987 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE8225CBC520063A987 /* APIRequest.swift */; };
+		5D675AF6225CBC520063A987 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE9225CBC520063A987 /* NetworkLogger.swift */; };
+		5D675AF7225CBC520063A987 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AEA225CBC520063A987 /* HTTPHeaders.swift */; };
+		5D675AF8225CBC520063A987 /* DefaultRequest+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AEB225CBC520063A987 /* DefaultRequest+Builder.swift */; };
+		5D675AF9225CBC520063A987 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AEC225CBC520063A987 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D2CDA6D219CE33E009BCA40 /* CoreNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D2CDA70219CE33E009BCA40 /* CoreNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNetwork.h; sourceTree = "<group>"; };
 		5D2CDA71219CE33E009BCA40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D2CDA7A219CE3C0009BCA40 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		5D2CDA7C219CE3D7009BCA40 /* AlamofireAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAPIClient.swift; sourceTree = "<group>"; };
-		5D2CDA7E219CE3F6009BCA40 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
-		5D2CDA80219CE413009BCA40 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
-		5D2CDA82219CE433009BCA40 /* ServiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfigurator.swift; sourceTree = "<group>"; };
-		5D2CDA84219CE468009BCA40 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		5D2CDA86219CE479009BCA40 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		5D675AE0225CBC510063A987 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
+		5D675AE1225CBC510063A987 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		5D675AE2225CBC510063A987 /* DefaultAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPIClient.swift; sourceTree = "<group>"; };
+		5D675AE3225CBC510063A987 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		5D675AE4225CBC510063A987 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		5D675AE5225CBC510063A987 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		5D675AE6225CBC510063A987 /* ServiceConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfigurator.swift; sourceTree = "<group>"; };
+		5D675AE7225CBC510063A987 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
+		5D675AE8225CBC520063A987 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		5D675AE9225CBC520063A987 /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		5D675AEA225CBC520063A987 /* HTTPHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
+		5D675AEB225CBC520063A987 /* DefaultRequest+Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultRequest+Builder.swift"; sourceTree = "<group>"; };
+		5D675AEC225CBC520063A987 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +90,19 @@
 		5D2CDA79219CE3AD009BCA40 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5D2CDA7A219CE3C0009BCA40 /* APIClient.swift */,
-				5D2CDA7C219CE3D7009BCA40 /* AlamofireAPIClient.swift */,
-				5D2CDA7E219CE3F6009BCA40 /* APIRequest.swift */,
-				5D2CDA82219CE433009BCA40 /* ServiceConfigurator.swift */,
-				5D2CDA80219CE413009BCA40 /* NetworkLogger.swift */,
-				5D2CDA84219CE468009BCA40 /* Result.swift */,
-				5D2CDA86219CE479009BCA40 /* Common.swift */,
+				5D675AE5225CBC510063A987 /* APIClient.swift */,
+				5D675AE2225CBC510063A987 /* DefaultAPIClient.swift */,
+				5D675AE7225CBC510063A987 /* AlamofireManager.swift */,
+				5D675AE6225CBC510063A987 /* ServiceConfigurator.swift */,
+				5D675AE4225CBC510063A987 /* NetworkError.swift */,
+				5D675AE8225CBC520063A987 /* APIRequest.swift */,
+				5D675AEB225CBC520063A987 /* DefaultRequest+Builder.swift */,
+				5D675AEA225CBC520063A987 /* HTTPHeaders.swift */,
+				5D675AE1225CBC510063A987 /* HTTPMethod.swift */,
+				5D675AE3225CBC510063A987 /* ParameterEncoding.swift */,
+				5D675AE9225CBC520063A987 /* NetworkLogger.swift */,
+				5D675AEC225CBC520063A987 /* Result.swift */,
+				5D675AE0225CBC510063A987 /* Commons.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -168,13 +186,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D2CDA85219CE468009BCA40 /* Result.swift in Sources */,
-				5D2CDA83219CE433009BCA40 /* ServiceConfigurator.swift in Sources */,
-				5D2CDA81219CE413009BCA40 /* NetworkLogger.swift in Sources */,
-				5D2CDA7D219CE3D7009BCA40 /* AlamofireAPIClient.swift in Sources */,
-				5D2CDA7F219CE3F6009BCA40 /* APIRequest.swift in Sources */,
-				5D2CDA7B219CE3C0009BCA40 /* APIClient.swift in Sources */,
-				5D2CDA87219CE479009BCA40 /* Common.swift in Sources */,
+				5D675AF6225CBC520063A987 /* NetworkLogger.swift in Sources */,
+				5D675AF9225CBC520063A987 /* Result.swift in Sources */,
+				5D675AEE225CBC520063A987 /* HTTPMethod.swift in Sources */,
+				5D675AF3225CBC520063A987 /* ServiceConfigurator.swift in Sources */,
+				5D675AEF225CBC520063A987 /* DefaultAPIClient.swift in Sources */,
+				5D675AF0225CBC520063A987 /* ParameterEncoding.swift in Sources */,
+				5D675AF4225CBC520063A987 /* AlamofireManager.swift in Sources */,
+				5D675AED225CBC520063A987 /* Commons.swift in Sources */,
+				5D675AF1225CBC520063A987 /* NetworkError.swift in Sources */,
+				5D675AF5225CBC520063A987 /* APIRequest.swift in Sources */,
+				5D675AF2225CBC520063A987 /* APIClient.swift in Sources */,
+				5D675AF7225CBC520063A987 /* HTTPHeaders.swift in Sources */,
+				5D675AF8225CBC520063A987 /* DefaultRequest+Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
