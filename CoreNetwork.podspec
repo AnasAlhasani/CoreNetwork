@@ -6,14 +6,15 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/AnasAlhasani/CoreNetwork'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = 'Anas Alhasani'
+  s.source       = { :git => 'https://github.com/AnasAlhasani/CoreNetwork.git', :tag => 'v' + s.version.to_s }
   s.social_media_url = 'https://twitter.com/AlhasaniAnas'
 
   s.ios.deployment_target = '10.0'
-  s.source       = { :git => 'https://github.com/AnasAlhasani/CoreNetwork.git', :tag => s.version.to_s }
-  
+  s.watchos.deployment_target = '4.0'
+  s.swift_version = '4.2'
+
   s.source_files = '**/*.{m,h,mm,hpp,cpp,c,swift,png,jpg}'
   
   s.frameworks   = 'Foundation'
-  s.dependency 'Alamofire'
-  s.swift_version = '4.2'
+  s.dependency     'Alamofire'
 end
