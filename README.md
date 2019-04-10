@@ -2,7 +2,7 @@
 
 <p align="justify">
     <img src="https://img.shields.io/badge/Swift-4.2-orange.svg" />
-    <img src="https://img.shields.io/badge/Platforms-iOS-blue.svg?style=flat" />
+    <img src="https://img.shields.io/badge/Platforms-iOS%20%7C%20watchOS-blue.svg?style=flat" />
     <img alt="GitHub tag (latest SemVer)" src="https://img.shields.io/github/tag/anasalhasani/corenetwork.svg">
     <a href="https://codebeat.co/projects/github-com-anasalhasani-corenetwork-master">
       <img src="https://codebeat.co/badges/e7169d1a-505e-49b8-ba1c-d140042e27d3" alt="Codebeat" />
