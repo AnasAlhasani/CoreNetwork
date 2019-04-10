@@ -17,4 +17,5 @@ Pod::Spec.new do |s|
   
   s.frameworks   = 'Foundation'
   s.dependency     'Alamofire'
+  s.dependency     'PromisesSwift'
 end
