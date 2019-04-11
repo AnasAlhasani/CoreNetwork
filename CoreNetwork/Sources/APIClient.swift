@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Promises
 
 public protocol APIClient {
    
@@ -14,5 +15,5 @@ public protocol APIClient {
    
    init(_ configuration: ServiceConfigurator)
    
-   func execute<T: APIRequest>(_ request: T, completion: @escaping Handler<T.Response>)
+   func execute<T: APIRequest>(_ request: T) -> Promise<T.Response>
 }
