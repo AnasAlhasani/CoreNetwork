@@ -20,7 +20,6 @@
 		5D675AF6225CBC520063A987 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AE9225CBC520063A987 /* NetworkLogger.swift */; };
 		5D675AF7225CBC520063A987 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AEA225CBC520063A987 /* HTTPHeaders.swift */; };
 		5D675AF8225CBC520063A987 /* DefaultRequest+Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AEB225CBC520063A987 /* DefaultRequest+Builder.swift */; };
-		5D675AF9225CBC520063A987 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D675AEC225CBC520063A987 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		5D675AE9225CBC520063A987 /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		5D675AEA225CBC520063A987 /* HTTPHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		5D675AEB225CBC520063A987 /* DefaultRequest+Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultRequest+Builder.swift"; sourceTree = "<group>"; };
-		5D675AEC225CBC520063A987 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +99,6 @@
 				5D675AE1225CBC510063A987 /* HTTPMethod.swift */,
 				5D675AE3225CBC510063A987 /* ParameterEncoding.swift */,
 				5D675AE9225CBC520063A987 /* NetworkLogger.swift */,
-				5D675AEC225CBC520063A987 /* Result.swift */,
 				5D675AE0225CBC510063A987 /* Commons.swift */,
 			);
 			path = Sources;
@@ -187,7 +184,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D675AF6225CBC520063A987 /* NetworkLogger.swift in Sources */,
-				5D675AF9225CBC520063A987 /* Result.swift in Sources */,
 				5D675AEE225CBC520063A987 /* HTTPMethod.swift in Sources */,
 				5D675AF3225CBC520063A987 /* ServiceConfigurator.swift in Sources */,
 				5D675AEF225CBC520063A987 /* DefaultAPIClient.swift in Sources */,
