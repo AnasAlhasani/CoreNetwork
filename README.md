@@ -11,6 +11,11 @@
 
 Protocol oriented networking layer on top of Alamofire
 
+## Used Libraries
+
+* [**Alamofire**](https://github.com/Alamofire/Alamofire): Elegant HTTP Networking in Swift.
+* [**Google/Promises**](https://github.com/google/promises): a modern framework that provides a synchronization construct for Objective-C and Swift to facilitate writing asynchronous code.
+
 ## Examples
 
 **1. Entities:**
@@ -42,71 +47,52 @@ struct AddBookParameters: Encodable {
 }
 ```
 
-**2. Controller:**
+**2. UseCase:**
 
 ```swift
-class BooksViewController: UIViewController {
+protocol BooksUseCase {
+    func loadBooks() -> Promise<[Book]>
+    func addBook(_ parameters: AddBookParameters) -> Promise<Book>
+    func deleteBook(_ book: Book) -> Promise<VoidResponse>
+}
+
+final class APIBooksUseCase {
     
-    private lazy var apiClient: APIClient = {
-        // Manual configurations
-        let configurations = ServiceConfigurator(baseURL: "https://127.0.0.1/api")
-        // Or use automatic configurations
-        // let configurations = ServiceConfigurator()
-        return DefaultAPIClient(configurations)
-    }()
+    private let apiClient: APIClient
     
-    private var books = [Book]()
-    private var book: Book?
-    
-    func loadBooks() {
+    // Automatic configurations
+    init(apiClient: APIClient = DefaultAPIClient()) {
+        self.apiClient = apiClient
+    }
+}
+
+extension APIBooksUseCase: BooksUseCase {
+    func loadBooks() -> Promise<[Book]> {
         let request = RequestBuilder<[Book]>()
             .path("books")
             .method(.get)
             .build()
         
-        apiClient.execute(request) { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case let .success(value):
-                self.books = value
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
-        }
+        return apiClient.execute(request)
     }
     
-    func addBook(parameters: AddBookParameters) {
+    func addBook(_ parameters: AddBookParameters) -> Promise<Book> {
         let request = RequestBuilder<Book>()
             .path("books")
             .method(.post)
             .encode(parameters, bodyEncoding: .jsonEncoding)
             .build()
         
-        apiClient.execute(request) { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case let .success(value):
-                self.book = value
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
-        }
+        return apiClient.execute(request)
     }
     
-    func deleteBook(_ book: Book) {
+    func deleteBook(_ book: Book) -> Promise<VoidResponse> {
         let request = RequestBuilder<VoidResponse>()
             .path("books/\(book.id)")
             .method(.delete)
             .build()
         
-        apiClient.execute(request) { (result) in
-            switch result {
-            case let .success(value):
-                print(value)
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
-        }
+        return apiClient.execute(request)
     }
 }
 ```
