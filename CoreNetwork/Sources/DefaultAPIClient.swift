@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import Promises
 
 public final class DefaultAPIClient: APIClient {
    
@@ -16,34 +17,30 @@ public final class DefaultAPIClient: APIClient {
       self.configuration = configuration
    }
    
-   public func execute<T: APIRequest>(_ request: T, completion: @escaping Handler<T.Response>) {
+   public func execute<T: APIRequest>(_ request: T) -> Promise<T.Response> {
       
       let urlRequest = request.urlRequest(in: self)
-      
       let dataRequest = AlamofireManager.default.request(urlRequest)
-      
       AlamofireManager.handleAuthChallenge()
-      
       NetworkLogger.log(request: urlRequest)
       
-      dataRequest.validate().responseJSON { response in
-         
-         NetworkLogger.log(data: response.data, response: response.response)
-         
-         if let error = response.error {
-            completion(.failure(NetworkError.error(error.localizedDescription)))
-         } else if let data = response.data {
-            do {
-               let object = try JSONDecoder().decode(T.Response.self, from: data)
-               completion(.success(object))
-            } catch {
-               completion(.failure(NetworkError.decodingFailed))
+      return Promise<T.Response>(on: .global(qos: .background)) { (fullfill, reject) in
+         dataRequest.validate().responseJSON { response in
+            NetworkLogger.log(data: response.data, response: response.response)
+            if let error = response.error {
+               reject(NetworkError.error(error.localizedDescription))
+            } else if let data = response.data {
+               do {
+                  let object = try JSONDecoder().decode(T.Response.self, from: data)
+                  fullfill(object)
+               } catch {
+                  reject(NetworkError.decodingFailed)
+               }
+            } else {
+               reject(NetworkError.unknown)
             }
-         } else {
-            completion(.failure(NetworkError.unknown))
          }
       }
    }
    
 }
-

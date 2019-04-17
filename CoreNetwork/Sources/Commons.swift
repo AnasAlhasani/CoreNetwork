@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: - Typealias
 
-public typealias Handler<Value> = (Result<Value>) -> Void
 public typealias JSONDictionary = [String: Any]
 public typealias HeadersDictionary = [String: String]
 
