@@ -15,7 +15,7 @@ public struct DefaultRequest<ResponseType: Decodable>: APIRequest {
    public var path: String
    public var method: HTTPMethod
    public var headers: HeadersDictionary
-   public var urlParameters: JSONDictionary
+   public var urlParameters: Data?
    public var httpBody: Data?
    public var bodyEncoding: HTTPBodyEncoder
    
@@ -23,10 +23,10 @@ public struct DefaultRequest<ResponseType: Decodable>: APIRequest {
       path: String = "",
       method: HTTPMethod = .get,
       headers: HeadersDictionary = [:],
-      urlParameters: JSONDictionary = [:],
+      urlParameters: Data? = nil,
       httpBody: Data? = nil,
       bodyEncoding: HTTPBodyEncoder = .jsonEncoding
-   ) {
+      ) {
       self.path = path
       self.method = method
       self.headers = headers
@@ -63,16 +63,15 @@ public class RequestBuilder<Response: Decodable> {
    }
    
    @discardableResult
-   public func urlParameters(_ urlParameters: JSONDictionary) -> RequestBuilder {
-      defaultRequest.urlParameters = urlParameters
+   public func urlParameters<T: Encodable>(_ urlParameters: T) -> RequestBuilder {
+      defaultRequest.urlParameters = try? urlParameters.encode()
       return self
    }
    
    @discardableResult
    public func encode<T: Encodable>(_ encodable: T, bodyEncoding: HTTPBodyEncoder = .jsonEncoding) -> RequestBuilder {
-      guard let httpBody = try? bodyEncoding.encode(encodable) else { return self }
       defaultRequest.bodyEncoding = bodyEncoding
-      defaultRequest.httpBody = httpBody
+      defaultRequest.httpBody = try? bodyEncoding.encode(encodable)
       return self
    }
    

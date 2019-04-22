@@ -8,29 +8,16 @@
 
 import Foundation
 
-enum HTTPParameter {
+enum Parameter {
    case string(String)
    case bool(Bool)
    case int(Int)
    case double(Double)
-   
-   init(value: Any) throws {
-      switch value {
-      case let stringValue as String:
-         self = .string(stringValue)
-      case let boolValue as Bool:
-         self = .bool(boolValue)
-      case let intValue as Int:
-         self = .int(intValue)
-      case let doubleValue as Double:
-         self = .double(doubleValue)
-      default:
-         throw NetworkError.invalidParameter
-      }
-   }
+   case array([Parameter])
+   case dictionary([String: Parameter])
 }
 
-extension HTTPParameter: Codable {
+extension Parameter: Codable {
    init(from decoder: Decoder) throws {
       let container = try decoder.singleValueContainer()
       
@@ -42,6 +29,10 @@ extension HTTPParameter: Codable {
          self = .int(int)
       } else if let double = try? container.decode(Double.self) {
          self = .double(double)
+      } else if let array = try? container.decode([Parameter].self) {
+         self = .array(array)
+      } else if let dictionary = try? container.decode([String: Parameter].self)  {
+         self = .dictionary(dictionary)
       } else {
          throw NetworkError.decodingFailed
       }
@@ -59,11 +50,15 @@ extension HTTPParameter: Codable {
          try container.encode(value)
       case let .double(value):
          try container.encode(value)
+      case let .array(value):
+         try container.encode(value)
+      case let .dictionary(value):
+         try container.encode(value)
       }
    }
 }
 
-extension HTTPParameter: CustomStringConvertible {
+extension Parameter: CustomStringConvertible {
    var description: String {
       switch self {
       case .string(let string):
@@ -74,6 +69,10 @@ extension HTTPParameter: CustomStringConvertible {
          return String(describing: int)
       case .double(let double):
          return String(describing: double)
+      case .array(let array):
+         return String(describing: array)
+      case .dictionary(let dictionary):
+         return String(describing: dictionary)
       }
    }
 }
@@ -82,13 +81,18 @@ public enum HTTPBodyEncoder {
    case urlEncoding
    case jsonEncoding
    
-   public func encode<T: Encodable>(_ encodable: T) throws -> Data? {
+   public func encode<T: Encodable>(_ encodable: T) throws -> Data {
       do {
          switch self {
          case .jsonEncoding:
             return try encodable.encode()
          case .urlEncoding:
-            return try URLQueryEncoder.encode(encodable).data(using: .utf8, allowLossyConversion: false)
+            let queryString = try URLQueryEncoder.queryString(encodable)
+            if let data = queryString.data(using: .utf8, allowLossyConversion: false) {
+               return data
+            } else {
+               throw NetworkError.encodingFailed
+            }
          }
       } catch {
          throw NetworkError.encodingFailed
@@ -97,17 +101,14 @@ public enum HTTPBodyEncoder {
 }
 
 enum URLQueryEncoder {
-   
-   static func encode<T: Encodable>(_ encodable: T) throws -> String {
-      return try encode(encodable).map { "\($0)=\($1.description)" }.joined(separator: "&")
-   }
-   
-   static func encode<T: Encodable>(_ encodable: T) throws -> [URLQueryItem] {
-      return try encode(encodable).map { URLQueryItem(name: $0, value: $1.description) }
-   }
-   
-   private static func encode<T: Encodable>(_ encodable: T) throws -> [String: HTTPParameter] {
+   static func queryString<T: Encodable>(_ encodable: T) throws -> String {
       let data: Data = try encodable.encode()
-      return try JSONDecoder().decode([String: HTTPParameter].self, from: data)
+      let parameters: [String: Parameter] = try data.decode()
+      return parameters.map { "\($0)=\($1.description)" }.joined(separator: "&")
+   }
+   
+   static func queryItems(_ data: Data) throws -> [URLQueryItem] {
+      let parameters: [String: Parameter] = try data.decode()
+      return parameters.map { URLQueryItem(name: $0, value: $1.description) }
    }
 }
