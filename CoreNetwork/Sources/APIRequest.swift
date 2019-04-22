@@ -15,7 +15,7 @@ public protocol APIRequest {
    var path: String { get }
    var method: HTTPMethod { get }
    var headers: HeadersDictionary { get }
-   var urlParameters: JSONDictionary { get }
+   var urlParameters: Data? { get }
    var httpBody: Data? { get }
    var bodyEncoding: HTTPBodyEncoder { get }
    func urlRequest(in apiClient: APIClient) -> URLRequest
@@ -26,8 +26,8 @@ public extension APIRequest {
       return [:]
    }
    
-   var urlParameters: JSONDictionary {
-      return [:]
+   var urlParameters: Data? {
+      return nil
    }
    
    var httpBody: Data? {
@@ -60,9 +60,9 @@ public extension APIRequest {
 internal extension APIRequest {
    func url(in apiClient: APIClient) -> URL {
       let url = apiClient.configuration.url.appendingPathComponent(path)
+      guard let urlParameters = urlParameters else { return url }
       var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-      let parameters = urlParameters.mapValues { try? HTTPParameter(value: $0) }
-      urlComponents?.queryItems = try? URLQueryEncoder.encode(parameters)
+      urlComponents?.queryItems = try? URLQueryEncoder.queryItems(urlParameters)
       return urlComponents?.url ?? url
    }
    
