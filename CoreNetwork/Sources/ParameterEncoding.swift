@@ -72,7 +72,8 @@ extension Parameter: CustomStringConvertible {
       case .array(let array):
          return String(describing: array)
       case .dictionary(let dictionary):
-         return String(describing: dictionary)
+         let jsonString = dictionary.mapValues { $0.description }.jsonString
+         return  jsonString ?? String(describing: dictionary)
       }
    }
 }
