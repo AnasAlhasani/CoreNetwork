@@ -38,6 +38,12 @@
 		5D675AE9225CBC520063A987 /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 		5D675AEA225CBC520063A987 /* HTTPHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		5D675AEB225CBC520063A987 /* DefaultRequest+Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultRequest+Builder.swift"; sourceTree = "<group>"; };
+		5D9C30D923197D0200494A03 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
+		5DC8E43F23196F78008CAD25 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		5DC8E44523196F78008CAD25 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		5DC8E44623196F78008CAD25 /* CoreNetwork.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoreNetwork.podspec; sourceTree = SOURCE_ROOT; };
+		5DC8E44D231970FF008CAD25 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Fastfile; path = fastlane/Fastfile; sourceTree = SOURCE_ROOT; };
+		5DC8E44E231971D6008CAD25 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 		5D2CDA6F219CE33E009BCA40 /* CoreNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				5DC8E43E23196F53008CAD25 /* Metadata */,
 				5D2CDA79219CE3AD009BCA40 /* Sources */,
 				5D2CDA78219CE39C009BCA40 /* Supporting Files */,
 			);
@@ -102,6 +109,19 @@
 				5D675AE0225CBC510063A987 /* Commons.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		5DC8E43E23196F53008CAD25 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				5D9C30D923197D0200494A03 /* Package.swift */,
+				5DC8E44623196F78008CAD25 /* CoreNetwork.podspec */,
+				5DC8E44D231970FF008CAD25 /* Fastfile */,
+				5DC8E44E231971D6008CAD25 /* .gitignore */,
+				5DC8E44523196F78008CAD25 /* LICENSE */,
+				5DC8E43F23196F78008CAD25 /* README.md */,
+			);
+			name = Metadata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
