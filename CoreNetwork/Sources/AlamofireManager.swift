@@ -6,6 +6,7 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Foundation
 import Alamofire
 
 enum AlamofireManager {

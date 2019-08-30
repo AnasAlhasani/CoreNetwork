@@ -6,6 +6,7 @@
 //  Copyright © 2018 Anas Alhasani. All rights reserved.
 //
 
+import Foundation
 import Alamofire
 import Promises
 

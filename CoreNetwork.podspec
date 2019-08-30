@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '4.0'
   s.swift_version = '5.0'
 
-  s.source_files = '**/*.{m,h,mm,hpp,cpp,c,swift,png,jpg}'
+  s.source_files = 'CoreNetwork/Sources/'
   
   s.frameworks   = 'Foundation'
   s.dependency     'Alamofire'
