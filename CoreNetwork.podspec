@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
   s.source_files = 'CoreNetwork/Sources/'
   
   s.frameworks   = 'Foundation'
-  s.dependency     'Alamofire'
+  s.dependency     'Alamofire', '4.9.1'
   s.dependency     'PromisesSwift'
 end

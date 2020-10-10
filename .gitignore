@@ -20,6 +20,7 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+*.DS_Store
 
 ## Obj-C/Swift specific
 *.hmap
@@ -33,6 +34,12 @@ playground.xcworkspace
 
 # Swift Package Manager
 .build/
+.swiftpm
+
+# CocoaPods
+Pods/
+*.lock
+*.xcworkspace
 
 # Carthage
 Carthage/Build
